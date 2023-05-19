@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7a8fodmi8heo"]
+
+[ext_resource type="Script" path="res://enemies/enemies_manager.gd" id="1_b8fbd"]
+
+[sub_resource type="Curve2D" id="Curve2D_o1k6e"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -41, -94, 0, 0, 0, 0, 917, -95, 0, 0, 0, 0, 916, 555, 0, 0, 0, 0, -44, 557, 0, 0, 0, 0, -41, -94)
+}
+point_count = 5
+
+[node name="EnemiesManager" type="Node2D"]
+script = ExtResource("1_b8fbd")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="EnemySpawner" type="Path2D" parent="."]
+position = Vector2(-435, -216)
+curve = SubResource("Curve2D_o1k6e")
+
+[node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemySpawner"]
+position = Vector2(-41, -94)
+rotation = -0.00104384
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

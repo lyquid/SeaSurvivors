@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc0agxkaq6x7u"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_nr06c"]
+[ext_resource type="Texture2D" uid="uid://cauybv3mesdre" path="res://player/graphics/parallel.png" id="1_vbbd8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hpppn"]
+radius = 4.0
+height = 32.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cxwi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vbbd8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 18
+motion_mode = 1
+script = ExtResource("1_nr06c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vbbd8")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_hpppn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_2cxwi")
+
+[node name="Camera2D" type="Camera2D" parent="."]

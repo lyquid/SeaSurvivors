@@ -1,0 +1,25 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://blkbx8b644i7l"]
+
+[ext_resource type="Texture2D" uid="uid://bjrrmiwy4wo8k" path="res://world/graphics/tileset.png" id="1_20li0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6af5h"]
+resource_name = "Water"
+texture = ExtResource("1_20li0")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/probability = 80.0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/probability = 10.0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/probability = 10.0
+
+[resource]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Water"
+terrain_set_0/terrain_0/color = Color(0.309804, 0.341176, 0.682353, 1)
+sources/0 = SubResource("TileSetAtlasSource_6af5h")
