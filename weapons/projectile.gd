@@ -5,6 +5,7 @@ var damage: int
 var speed: float
 var direction: Vector2
 var disable_time: float
+var piercing_power: int
 
 
 func _ready():
@@ -18,7 +19,9 @@ func _physics_process(delta: float):
 
 func _on_body_entered(enemy: Enemy):
 	enemy.hit(damage)
-	queue_free()
+	piercing_power = piercing_power - enemy.armor
+	if not piercing_power:
+		queue_free()
 
 
 func _on_disable_timer_timeout():

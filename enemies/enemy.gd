@@ -9,6 +9,7 @@ signal died
 @onready var damage_label := $DamageLabel
 @onready var damage_label_timer := $DamageLabel/DamageLabelTimer
 @onready var death_timer := $DeathTimer
+var armor: int
 var damage: int
 var direction: Vector2
 var dying := false
