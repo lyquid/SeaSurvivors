@@ -105,7 +105,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3snq"]
 radius = 2.0
-height = 16.0
+height = 14.0
 
 [node name="Boat" instance=ExtResource("1_5d63f")]
 script = ExtResource("2_kh0bp")
