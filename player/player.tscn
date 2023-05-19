@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc0agxkaq6x7u"]
+[gd_scene load_steps=7 format=3 uid="uid://cc0agxkaq6x7u"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_nr06c"]
 [ext_resource type="Texture2D" uid="uid://cauybv3mesdre" path="res://player/graphics/parallel.png" id="1_vbbd8"]
 [ext_resource type="Texture2D" uid="uid://ckpinfin0bu6q" path="res://player/graphics/player.png" id="2_88de6"]
+[ext_resource type="PackedScene" uid="uid://ujpm81stpf3f" path="res://weapons/weapon_manager.tscn" id="4_pjgmj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hpppn"]
 radius = 11.0
@@ -20,7 +21,6 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 1
 collision_layer = 2
 collision_mask = 18
 motion_mode = 1
@@ -40,3 +40,6 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_2cxwi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="WeaponManager" parent="." instance=ExtResource("4_pjgmj")]

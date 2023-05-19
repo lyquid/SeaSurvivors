@@ -1,7 +1,7 @@
 extends Enemy
 
 const DEFAULT_BOAT_DAMAGE := 5
-const DEFAULT_BOAT_HEALTH := 10
+const DEFAULT_BOAT_HEALTH := 100
 const DEFAULT_BOAT_SPEED := 40.0
 
 

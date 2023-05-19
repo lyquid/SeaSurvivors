@@ -30,6 +30,7 @@ func _process(_delta: float):
 
 func die():
 	dying = true
+	collision_shape.set_deferred("disabled", true)
 	animated_sprite.modulate = Color.RED
 	death_timer.wait_time = animation_player.get_animation("death").length
 	death_timer.start()

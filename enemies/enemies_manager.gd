@@ -1,8 +1,9 @@
 class_name EnemiesManager extends Node
 
-const DEFAULT_SPAWN_TIME := 2.0
+const DEFAULT_SPAWN_TIME := 1.0
 const MAX_ENEMIES := 300
 
+@onready var world := get_tree().root.get_node("Main/World")
 @onready var player := get_tree().root.get_node("Main/World/Player")
 @onready var enemy_spawner := $EnemySpawner
 @onready var enemy_spawn_location := $EnemySpawner/EnemySpawnLocation
@@ -11,7 +12,7 @@ var rng := RandomNumberGenerator.new()
 # Enemies
 var enemies_count := 0
 enum { BOAT }
-var boat_star_scene := preload("res://enemies/boat/boat.tscn")
+var boat_scene := preload("res://enemies/boat/boat.tscn")
 
 
 func _ready():
@@ -23,11 +24,11 @@ func instance_enemy(enemy_type):
 	var enemy: Enemy = null
 	match enemy_type:
 		BOAT:
-			enemy = boat_star_scene.instantiate()
+			enemy = boat_scene.instantiate()
 		_:
 			print("Wrong enemy")
 	assert(enemy)
-	get_tree().root.get_node("Main/World").call_deferred("add_child", enemy)
+	world.call_deferred("add_child", enemy)
 	var err := enemy.connect("died", _on_enemy_death)
 	assert(!err)
 	enemy_spawn_location.progress_ratio = randi()

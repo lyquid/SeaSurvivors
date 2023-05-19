@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b40fmkl15x73f"]
+
+[ext_resource type="PackedScene" uid="uid://b7mnvnn7g1d8x" path="res://weapons/weapon.tscn" id="1_g0moq"]
+[ext_resource type="Script" path="res://weapons/cannon/cannon.gd" id="2_xamnp"]
+
+[node name="Cannon" instance=ExtResource("1_g0moq")]
+script = ExtResource("2_xamnp")

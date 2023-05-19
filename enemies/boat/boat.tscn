@@ -116,3 +116,9 @@ sprite_frames = SubResource("SpriteFrames_itdof")
 [node name="CollisionShape2D" parent="." index="1"]
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_a3snq")
+
+[node name="DamageLabel" parent="." index="5"]
+offset_left = -9.0
+offset_top = -18.0
+offset_right = 11.0
+offset_bottom = 2.0

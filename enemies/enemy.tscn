@@ -1,10 +1,67 @@
-[gd_scene load_steps=3 format=3 uid="uid://d065ky5808xyd"]
+[gd_scene load_steps=8 format=3 uid="uid://d065ky5808xyd"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_trryi"]
+[ext_resource type="FontFile" uid="uid://cjun4cmhg5r72" path="res://fonts/Schrödinger.ttf" id="2_prgfx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6dwic"]
 friction = 0.7
 bounce = 0.05
+
+[sub_resource type="Animation" id="Animation_toj6x"]
+resource_name = "death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.785398]
+}
+
+[sub_resource type="Animation" id="Animation_1aqb5"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t0jr5"]
+_data = {
+"death": SubResource("Animation_toj6x"),
+"hit": SubResource("Animation_1aqb5")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_mugvl"]
+font = ExtResource("2_prgfx")
+font_size = 10
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Enemy" type="RigidBody2D" groups=["enemies"]]
 collision_layer = 4
@@ -19,8 +76,12 @@ script = ExtResource("1_trryi")
 y_sort_enabled = true
 
 [node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t0jr5")
+}
 
 [node name="AITimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -30,8 +91,13 @@ autostart = true
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_mugvl")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DamageLabelTimer" type="Timer" parent="DamageLabel"]
+wait_time = 0.3
+one_shot = true
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="AITimer" to="." method="_on_ai_timer_timeout"]
