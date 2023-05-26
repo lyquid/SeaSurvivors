@@ -5,3 +5,6 @@
 
 [node name="Cannon" instance=ExtResource("1_g0moq")]
 script = ExtResource("2_xamnp")
+
+[node name="CooldownTimer" parent="." index="1"]
+one_shot = true
