@@ -16,6 +16,7 @@ var boat_scene := preload("res://enemies/boat/boat.tscn")
 
 
 func _ready():
+	rng.randomize()
 	spawn_timer.wait_time = DEFAULT_SPAWN_TIME
 	spawn_timer.start()
 
@@ -31,7 +32,7 @@ func instance_enemy(enemy_type):
 	world.call_deferred("add_child", enemy)
 	var err := enemy.connect("died", _on_enemy_death)
 	assert(!err)
-	enemy_spawn_location.progress_ratio = randi()
+	enemy_spawn_location.progress_ratio = rng.randi()
 	enemy.position = enemy_spawn_location.global_position + player.global_position
 
 	enemies_count += 1
