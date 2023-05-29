@@ -2,6 +2,8 @@ class_name Enemy extends RigidBody2D
 
 signal died
 
+const DEFAULT_DAMAGE_LABEL_TIME := 0.3
+
 @onready var player := get_tree().root.get_node("Main/World/Player")
 @onready var animated_sprite := $AnimatedSprite2D
 @onready var animation_player := $AnimationPlayer
@@ -31,11 +33,11 @@ func _process(_delta: float):
 
 func die():
 	dying = true
+	direction = Vector2.ZERO
+	animated_sprite.visible = false
 	collision_shape.set_deferred("disabled", true)
-	animated_sprite.modulate = Color.RED
-	death_timer.wait_time = animation_player.get_animation("death").length
+	death_timer.wait_time = DEFAULT_DAMAGE_LABEL_TIME
 	death_timer.start()
-	animation_player.play("death")
 
 
 func hit(damage_in: int):
@@ -43,6 +45,7 @@ func hit(damage_in: int):
 		health -= damage_in
 		damage_label.text = str(damage_in)
 		damage_label.visible = true
+		damage_label_timer.wait_time = DEFAULT_DAMAGE_LABEL_TIME
 		damage_label_timer.start()
 		if health <= 0:
 			die()
@@ -51,7 +54,8 @@ func hit(damage_in: int):
 
 
 func _on_ai_timer_timeout():
-	direction = (player.position - position).normalized()
+	if not dying:
+		direction = (player.position - position).normalized()
 
 
 func _on_death_timer_timeout():

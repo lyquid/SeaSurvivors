@@ -5,11 +5,24 @@ const DEFAULT_BOAT_DAMAGE := 5
 const DEFAULT_BOAT_HEALTH := 1
 const DEFAULT_BOAT_SPEED_RANGE := Vector2(30.0, 40.0)
 
+@onready var blood_effect_scene := preload("res://effects/blood/blood.tscn")
 
-func _ready():
+func _ready() -> void:
 	enemy_name = "Boat"
 	armor = DEFAULT_BOAT_ARMOR
 	damage = DEFAULT_BOAT_DAMAGE
 	health = DEFAULT_BOAT_HEALTH
 	speed = randf_range(DEFAULT_BOAT_SPEED_RANGE.x, DEFAULT_BOAT_SPEED_RANGE.y)
 	animated_sprite.play("default")
+
+
+func die() -> void:
+	dying = true
+	direction = Vector2.ZERO
+	animated_sprite.visible = false
+	collision_shape.set_deferred("disabled", true)
+	death_timer.wait_time = DEFAULT_DAMAGE_LABEL_TIME
+	death_timer.start()
+	var blood_effect := blood_effect_scene.instantiate()
+	blood_effect.global_position = global_position
+	get_parent().call_deferred("add_child", blood_effect)
