@@ -1,6 +1,7 @@
 extends GPUParticles2D
 
 const DEFAULT_BLOOD_DURATION := 5.0
+
 @onready var death_timer := $DeathTimer
 var tween: Tween
 

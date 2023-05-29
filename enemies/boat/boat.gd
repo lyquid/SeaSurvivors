@@ -7,6 +7,7 @@ const DEFAULT_BOAT_SPEED_RANGE := Vector2(30.0, 40.0)
 
 @onready var blood_effect_scene := preload("res://effects/blood/blood.tscn")
 
+
 func _ready() -> void:
 	enemy_name = "Boat"
 	armor = DEFAULT_BOAT_ARMOR
@@ -16,13 +17,8 @@ func _ready() -> void:
 	animated_sprite.play("default")
 
 
-func die() -> void:
-	dying = true
-	direction = Vector2.ZERO
+func die_effects() -> void:
 	animated_sprite.visible = false
-	collision_shape.set_deferred("disabled", true)
-	death_timer.wait_time = DEFAULT_DAMAGE_LABEL_TIME
-	death_timer.start()
 	var blood_effect := blood_effect_scene.instantiate()
 	blood_effect.global_position = global_position
 	get_parent().call_deferred("add_child", blood_effect)
