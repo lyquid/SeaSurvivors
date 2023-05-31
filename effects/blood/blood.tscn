@@ -22,7 +22,7 @@ hue_variation_max = 0.1
 [node name="Blood" type="GPUParticles2D"]
 z_index = -1
 emitting = false
-amount = 80
+amount = 100
 process_material = SubResource("ParticleProcessMaterial_ni66t")
 one_shot = true
 explosiveness = 1.0

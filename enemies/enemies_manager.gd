@@ -1,6 +1,6 @@
 class_name EnemiesManager extends Node
 
-const DEFAULT_SPAWN_TIME := 0.05
+const DEFAULT_SPAWN_TIME := 0.01
 const MAX_ENEMIES := 300
 
 @onready var world := get_tree().root.get_node("Main/World")
