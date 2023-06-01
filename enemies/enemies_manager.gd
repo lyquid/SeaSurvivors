@@ -11,21 +11,24 @@ const MAX_ENEMIES := 300
 var rng := RandomNumberGenerator.new()
 # Enemies
 var enemies_count := 0
-enum { BOAT }
+enum { BOAT, CANOE }
 var boat_scene := preload("res://enemies/boat/boat.tscn")
+var canoe_scene := preload("res://enemies/canoe/canoe.tscn")
 
 
-func _ready():
+func _ready() -> void:
 	rng.randomize()
 	spawn_timer.wait_time = DEFAULT_SPAWN_TIME
 	spawn_timer.start()
 
 
-func instance_enemy(enemy_type):
+func instance_enemy(enemy_type) -> void:
 	var enemy: Enemy = null
 	match enemy_type:
 		BOAT:
 			enemy = boat_scene.instantiate()
+		CANOE:
+			enemy = canoe_scene.instantiate()
 		_:
 			print("Wrong enemy")
 	assert(enemy)
@@ -38,8 +41,12 @@ func instance_enemy(enemy_type):
 	enemies_count += 1
 
 
-func spawn_enemy():
-	instance_enemy(BOAT)
+func spawn_enemy() -> void:
+	var dice := randi_range(1, 100)
+	if dice < 50:
+		instance_enemy(BOAT)
+	else:
+		instance_enemy(CANOE)
 
 
 #func spawn_enemy(enemy: Enemy):
@@ -52,10 +59,10 @@ func spawn_enemy():
 #	enemy.position = enemy_spawn_location.position + player.position
 
 
-func _on_enemy_death():
+func _on_enemy_death() -> void:
 	enemies_count -= 1
 
 
-func _on_spawn_timer_timeout():
+func _on_spawn_timer_timeout() -> void:
 	if enemies_count < MAX_ENEMIES:
 		spawn_enemy()

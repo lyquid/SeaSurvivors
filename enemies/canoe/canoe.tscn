@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://n7l22ack6kmr"]
+
+[ext_resource type="PackedScene" uid="uid://d065ky5808xyd" path="res://enemies/enemy.tscn" id="1_cccsq"]
+[ext_resource type="Script" path="res://enemies/canoe/canoe.gd" id="2_6ce3c"]
+[ext_resource type="Texture2D" uid="uid://bunspts3xi853" path="res://enemies/canoe/graphics/canoe.png" id="3_nf6fv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suwk4"]
+atlas = ExtResource("3_nf6fv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02iij"]
+atlas = ExtResource("3_nf6fv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txefj"]
+atlas = ExtResource("3_nf6fv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm5qv"]
+atlas = ExtResource("3_nf6fv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e768d"]
+atlas = ExtResource("3_nf6fv")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g274"]
+atlas = ExtResource("3_nf6fv")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57py6"]
+atlas = ExtResource("3_nf6fv")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ab068"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suwk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02iij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txefj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm5qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e768d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g274")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57py6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_doya7"]
+radius = 1.0
+height = 12.0
+
+[node name="Canoe" instance=ExtResource("1_cccsq")]
+script = ExtResource("2_6ce3c")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ab068")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 1)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_doya7")
