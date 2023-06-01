@@ -5,13 +5,13 @@ const DEFAULT_CANOE_DAMAGE := 5
 const DEFAULT_CANOE_HEALTH := 1
 const DEFAULT_CANOE_SPEED_RANGE := Vector2(35.0, 45.0)
 
-@onready var blood_effect_scene := preload("res://effects/blood/blood.tscn")
-@onready var canoe_explosion_scene := preload("res://enemies/canoe/canoe_explosion.tscn")
+var blood_effect_scene := preload("res://effects/blood/blood.tscn")
+var canoe_explosion_scene := preload("res://enemies/canoe/canoe_explosion.tscn")
 var sprite_size: Vector2
 
 
 func _ready() -> void:
-	enemy_name = "Boat"
+	enemy_name = "Canoe"
 	xp_value = 1
 	armor = DEFAULT_CANOE_ARMOR
 	damage = DEFAULT_CANOE_DAMAGE

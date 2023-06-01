@@ -5,8 +5,8 @@ const DEFAULT_BOAT_DAMAGE := 5
 const DEFAULT_BOAT_HEALTH := 1
 const DEFAULT_BOAT_SPEED_RANGE := Vector2(30.0, 40.0)
 
-@onready var blood_effect_scene := preload("res://effects/blood/blood.tscn")
-@onready var boat_explosion_scene := preload("res://enemies/boat/boat_explosion.tscn")
+var blood_effect_scene := preload("res://effects/blood/blood.tscn")
+var boat_explosion_scene := preload("res://enemies/boat/boat_explosion.tscn")
 var sprite_size: Vector2
 
 
