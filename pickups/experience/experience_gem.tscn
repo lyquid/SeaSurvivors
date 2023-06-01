@@ -1,0 +1,75 @@
+[gd_scene load_steps=13 format=3 uid="uid://cj52eltta7tfj"]
+
+[ext_resource type="PackedScene" uid="uid://7t1cbdeem3ka" path="res://pickups/pickup.tscn" id="1_w61le"]
+[ext_resource type="Script" path="res://pickups/experience/experience_gem.gd" id="2_yhebm"]
+[ext_resource type="Texture2D" uid="uid://b2u6ue5aqwpxv" path="res://pickups/experience/graphics/xpgem.png" id="3_r1ckk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlwh1"]
+atlas = ExtResource("3_r1ckk")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywnrp"]
+atlas = ExtResource("3_r1ckk")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs1gy"]
+atlas = ExtResource("3_r1ckk")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i8h8"]
+atlas = ExtResource("3_r1ckk")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r68sl"]
+atlas = ExtResource("3_r1ckk")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5d12"]
+atlas = ExtResource("3_r1ckk")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5f44"]
+atlas = ExtResource("3_r1ckk")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1nfl"]
+atlas = ExtResource("3_r1ckk")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6kt8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlwh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywnrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs1gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i8h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r68sl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5d12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5f44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1nfl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Experience" instance=ExtResource("1_w61le")]
+script = ExtResource("2_yhebm")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_l6kt8")

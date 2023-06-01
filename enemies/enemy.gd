@@ -18,6 +18,7 @@ var dying := false
 var enemy_name: String
 var health: int
 var speed: float
+var xp_value: int
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
@@ -65,7 +66,7 @@ func _on_ai_timer_timeout() -> void:
 
 
 func _on_death_timer_timeout() -> void:
-	emit_signal("died")
+	emit_signal("died", self)
 	queue_free()
 
 

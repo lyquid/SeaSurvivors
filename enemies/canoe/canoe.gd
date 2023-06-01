@@ -12,6 +12,7 @@ var sprite_size: Vector2
 
 func _ready() -> void:
 	enemy_name = "Boat"
+	xp_value = 1
 	armor = DEFAULT_CANOE_ARMOR
 	damage = DEFAULT_CANOE_DAMAGE
 	health = DEFAULT_CANOE_HEALTH

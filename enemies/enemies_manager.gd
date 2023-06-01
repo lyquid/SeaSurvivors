@@ -9,6 +9,7 @@ const MAX_ENEMIES := 300
 @onready var enemy_spawn_location := $EnemySpawner/EnemySpawnLocation
 @onready var spawn_timer := $SpawnTimer
 var rng := RandomNumberGenerator.new()
+var xp_scene := preload("res://pickups/experience/experience_gem.tscn")
 # Enemies
 var enemies_count := 0
 enum { BOAT, CANOE }
@@ -59,8 +60,17 @@ func spawn_enemy() -> void:
 #	enemy.position = enemy_spawn_location.position + player.position
 
 
-func _on_enemy_death() -> void:
+func drop_experience_gem(where: Vector2, xp_value: int) -> void:
+	var xp_gem := xp_scene.instantiate()
+	xp_gem.player = player
+	xp_gem.value = xp_value
+	xp_gem.global_position = where
+	get_parent().call_deferred("add_child", xp_gem)
+
+
+func _on_enemy_death(enemy: Enemy) -> void:
 	enemies_count -= 1
+	drop_experience_gem(enemy.global_position, enemy.xp_value)
 
 
 func _on_spawn_timer_timeout() -> void:
