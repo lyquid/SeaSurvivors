@@ -7,6 +7,7 @@ var speed: float
 var direction: Vector2
 var disable_time: float
 var piercing_power: int
+var splash_scene := preload("res://effects/splash/splash.tscn")
 
 
 func _ready() -> void:
@@ -26,5 +27,7 @@ func _on_body_entered(enemy: Enemy) -> void:
 
 
 func _on_disable_timer_timeout() -> void:
-	# splash!!
+	var splash := splash_scene.instantiate()
+	splash.global_position = global_position
+	get_parent().call_deferred("add_child", splash)
 	queue_free()
