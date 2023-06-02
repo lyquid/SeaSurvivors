@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://pktu5uqvofkq"]
+
+[ext_resource type="PackedScene" uid="uid://b7mnvnn7g1d8x" path="res://weapons/weapon.tscn" id="1_tr7em"]
+[ext_resource type="Script" path="res://weapons/ballista/ballista.gd" id="2_02y8y"]
+
+[node name="Ballista" instance=ExtResource("1_tr7em")]
+script = ExtResource("2_02y8y")
+
+[node name="CooldownTimer" parent="." index="1"]
+one_shot = true

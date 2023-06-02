@@ -6,3 +6,14 @@ class_name Weapon extends Node2D
 @onready var cooldown_timer := $CooldownTimer
 var cooldown: float
 var damage: int
+var piercing_power: int
+var projectile_disable_time: float
+var speed: float
+
+
+func fire() -> void:
+	pass
+
+
+func _on_cooldown_timer_timeout() -> void:
+	fire()

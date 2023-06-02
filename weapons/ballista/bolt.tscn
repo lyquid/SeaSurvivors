@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://c18yfx6omnxaa"]
+
+[ext_resource type="Script" path="res://weapons/projectile.gd" id="1_l5jms"]
+[ext_resource type="Texture2D" uid="uid://c42fphjhxhj15" path="res://weapons/ballista/graphics/bolt.png" id="2_cljfq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_guw2j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cljfq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wiias"]
+size = Vector2(12, 2)
+
+[node name="Bolt" type="Area2D" groups=["weapons"]]
+z_index = 1
+collision_layer = 8
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_l5jms")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_guw2j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wiias")
+
+[node name="DisableTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DisableTimer" to="." method="_on_disable_timer_timeout" flags=18]
