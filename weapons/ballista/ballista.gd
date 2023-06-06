@@ -7,11 +7,14 @@ const DEFAULT_BALLISTA_DAMAGE := 8
 const DEFAULT_BALLISTA_DISABLE_TIME := 1.5
 const DEFAULT_BALLISTA_PIERCING_POWER := 2
 const DEFAULT_BALLISTA_SPEED := 300.0
+const DEFAULT_BOLT_OFFSETS := [-4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0]
 
 var bolt_scene := preload("res://weapons/ballista/bolt.tscn")
 var burst_size := DEFAULT_BALLISTA_BURST_SIZE
 var current_burst := 1
 var fire_up := true
+var bolt_offset := 5.0
+var bolt_offsets := DEFAULT_BOLT_OFFSETS.duplicate()
 
 
 func _ready() -> void:
@@ -19,6 +22,9 @@ func _ready() -> void:
 	piercing_power = DEFAULT_BALLISTA_PIERCING_POWER
 	projectile_disable_time = DEFAULT_BALLISTA_DISABLE_TIME
 	speed = DEFAULT_BALLISTA_SPEED
+	# bolts' offset
+	bolt_offsets.shuffle()
+	# cooldown
 	cooldown = DEFAULT_BALLISTA_COOLDOWN
 	cooldown_timer.wait_time = cooldown
 	cooldown_timer.start()
@@ -39,9 +45,9 @@ func init_bolt() -> Projectile:
 		bolt.direction = Vector2(1.0, 0.0)
 		bolt.position.x += 30.0
 	if fire_up:
-		bolt.position.y -= 5
+		bolt.position.y -= bolt_offset + get_random_offset()
 	else:
-		bolt.position.y += 5
+		bolt.position.y += bolt_offset + get_random_offset()
 	fire_up = not fire_up
 	return bolt
 
@@ -55,3 +61,10 @@ func fire() -> void:
 		cooldown_timer.wait_time = cooldown
 		current_burst = 1
 	cooldown_timer.start()
+
+
+func get_random_offset() -> float:
+	if bolt_offsets.is_empty():
+		bolt_offsets = DEFAULT_BOLT_OFFSETS.duplicate()
+		bolt_offsets.shuffle()
+	return bolt_offsets.pop_front()
