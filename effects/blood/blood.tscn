@@ -28,8 +28,3 @@ one_shot = true
 explosiveness = 1.0
 visibility_rect = Rect2(0, 0, 0, 0)
 script = ExtResource("1_y34cp")
-
-[node name="DeathTimer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

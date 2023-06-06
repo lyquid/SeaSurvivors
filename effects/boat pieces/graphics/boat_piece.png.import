@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjkv1um8wmv0"
-path="res://.godot/imported/boat_piece.png-80eb5a16a437f487c3ef5c886e28065a.ctex"
+uid="uid://cl5xnqutsui1p"
+path="res://.godot/imported/boat_piece.png-7af9329d9e44fe77caa1153e47462ddf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/boat/graphics/boat_piece.png"
-dest_files=["res://.godot/imported/boat_piece.png-80eb5a16a437f487c3ef5c886e28065a.ctex"]
+source_file="res://effects/boat pieces/graphics/boat_piece.png"
+dest_files=["res://.godot/imported/boat_piece.png-7af9329d9e44fe77caa1153e47462ddf.ctex"]
 
 [params]
 
