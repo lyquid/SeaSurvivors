@@ -15,7 +15,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wiias"]
-size = Vector2(12, 2)
+size = Vector2(12, 4)
 
 [node name="Bolt" type="Area2D" groups=["weapons"]]
 z_index = 1
