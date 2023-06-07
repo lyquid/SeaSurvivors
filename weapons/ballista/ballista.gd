@@ -12,7 +12,7 @@ const DEFAULT_BOLT_OFFSETS := [-4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0]
 var bolt_scene := preload("res://weapons/ballista/bolt.tscn")
 var burst_size := DEFAULT_BALLISTA_BURST_SIZE
 var current_burst := 1
-var fire_up := true
+var fire_switch := true
 var bolt_offset := 5.0
 var bolt_offsets := DEFAULT_BOLT_OFFSETS.duplicate()
 
@@ -37,18 +37,19 @@ func init_bolt() -> Projectile:
 	bolt.disable_time = projectile_disable_time
 	bolt.speed = speed
 	bolt.global_position = player.global_position
-	if player.facing_left:
-		bolt.direction = Vector2(-1.0, 0.0)
-		bolt.position.x -= 30.0
-		bolt.get_node("AnimatedSprite2D").flip_h = true
+	bolt.direction = player.last_direction
+	bolt.rotation = bolt.direction.angle()
+	if fire_switch:
+		if is_zero_approx(bolt.direction.x):
+			bolt.position.x -= bolt_offset + get_random_offset()
+		else:
+			bolt.position.y -= bolt_offset + get_random_offset()
 	else:
-		bolt.direction = Vector2(1.0, 0.0)
-		bolt.position.x += 30.0
-	if fire_up:
-		bolt.position.y -= bolt_offset + get_random_offset()
-	else:
-		bolt.position.y += bolt_offset + get_random_offset()
-	fire_up = not fire_up
+		if is_zero_approx(bolt.direction.x):
+			bolt.position.x += bolt_offset + get_random_offset()
+		else:
+			bolt.position.y += bolt_offset + get_random_offset()
+	fire_switch = not fire_switch
 	return bolt
 
 

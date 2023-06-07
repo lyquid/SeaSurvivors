@@ -1,10 +1,11 @@
 class_name Player extends CharacterBody2D
 
-const DEFAULT_SPEED := 150.0
+const DEFAULT_SPEED := 100.0
 
 @onready var sprite := $Sprite2D
 var speed := DEFAULT_SPEED
 var facing_left := false
+var last_direction := Vector2.RIGHT
 # leveling stuff
 var level := 1
 var experience := 0
@@ -13,6 +14,10 @@ var experience_until_new_level := 5
 
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("left", "right", "up", "down")
+	
+	if not direction.is_zero_approx():
+		last_direction = direction
+		
 	velocity = direction * speed
 	
 	if direction.x < 0.0:
