@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb0sodrej5pnb"]
+
+[ext_resource type="PackedScene" uid="uid://b7mnvnn7g1d8x" path="res://weapons/weapon.tscn" id="1_643cu"]
+[ext_resource type="Script" path="res://weapons/anchor/anchor.gd" id="2_q0bnh"]
+[ext_resource type="Texture2D" uid="uid://okfag6q1e1vj" path="res://weapons/anchor/graphics/anchor.png" id="3_nhh0p"]
+[ext_resource type="Texture2D" uid="uid://bgsqej2s18376" path="res://weapons/anchor/graphics/rope.png" id="4_450rh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6h1jm"]
+radius = 8.0
+
+[node name="Anchor" instance=ExtResource("1_643cu")]
+script = ExtResource("2_q0bnh")
+
+[node name="CooldownTimer" parent="." index="1"]
+one_shot = true
+
+[node name="DurationTimer" type="Timer" parent="." index="2"]
+one_shot = true
+
+[node name="DamageArea" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+shape = SubResource("CircleShape2D_6h1jm")
+
+[node name="Sprite2D" type="Sprite2D" parent="DamageArea" index="1"]
+texture = ExtResource("3_nhh0p")
+
+[node name="Rope" type="Line2D" parent="." index="4"]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+texture = ExtResource("4_450rh")
+
+[connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
