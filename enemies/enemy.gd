@@ -1,4 +1,4 @@
-class_name Enemy extends RigidBody2D
+class_name Enemy extends CharacterBody2D
 
 signal died
 
@@ -19,15 +19,14 @@ var speed: float
 var xp_value: int
 
 
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	state.linear_velocity = direction * speed
-
-
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if direction.x > 0.0:
 		animated_sprite.flip_h = false
 	elif direction.x < 0.0:
 		animated_sprite.flip_h = true
+
+	velocity = direction * speed
+	move_and_slide()
 
 
 func die() -> void:

@@ -1,11 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d065ky5808xyd"]
+[gd_scene load_steps=7 format=3 uid="uid://d065ky5808xyd"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_trryi"]
 [ext_resource type="FontFile" uid="uid://cjun4cmhg5r72" path="res://fonts/Schrödinger.ttf" id="2_prgfx"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6dwic"]
-friction = 0.7
-bounce = 0.05
 
 [sub_resource type="Animation" id="Animation_toj6x"]
 resource_name = "death"
@@ -63,12 +59,10 @@ font_size = 8
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Enemy" type="RigidBody2D" groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
 collision_mask = 7
-physics_material_override = SubResource("PhysicsMaterial_6dwic")
-custom_integrator = true
-lock_rotation = true
+motion_mode = 1
 script = ExtResource("1_trryi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
