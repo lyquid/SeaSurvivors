@@ -95,6 +95,14 @@ vertical_alignment = 1
 wait_time = 0.3
 one_shot = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="BanishTimer" type="Timer" parent="VisibleOnScreenNotifier2D"]
+one_shot = true
+
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="AITimer" to="." method="_on_ai_timer_timeout"]
 [connection signal="timeout" from="DamageLabel/DamageLabelTimer" to="." method="_on_damage_label_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="VisibleOnScreenNotifier2D/BanishTimer" to="." method="_on_banish_timer_timeout"]

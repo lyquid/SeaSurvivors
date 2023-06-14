@@ -10,5 +10,5 @@ var cannon_scene := preload("res://weapons/cannon/cannon.tscn")
 
 func _ready() -> void:
 	player.call_deferred("add_child", anchor_scene.instantiate())
-#	player.call_deferred("add_child", ballista_scene.instantiate())
-#	player.call_deferred("add_child", cannon_scene.instantiate())
+	player.call_deferred("add_child", ballista_scene.instantiate())
+	player.call_deferred("add_child", cannon_scene.instantiate())

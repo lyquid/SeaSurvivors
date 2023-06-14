@@ -62,7 +62,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_doya7"]
-radius = 1.0
+radius = 2.0
 height = 12.0
 
 [node name="Canoe" instance=ExtResource("1_cccsq")]
@@ -82,3 +82,7 @@ offset_top = -18.0
 offset_right = 21.0
 offset_bottom = 5.0
 text = "10"
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+position = Vector2(4.17233e-07, 0.5)
+scale = Vector2(0.8, 0.35)
