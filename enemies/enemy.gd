@@ -72,8 +72,8 @@ func _on_ai_timer_timeout() -> void:
 
 
 func _on_death_timer_timeout() -> void:
-	emit_signal("died", self)
-	emit_signal("died_on_a_pack")
+	died.emit(self)
+	died_on_a_pack.emit()
 	queue_free()
 
 
@@ -90,5 +90,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 
 func _on_banish_timer_timeout() -> void:
-	emit_signal("banished")
+	banished.emit()
 	queue_free()
