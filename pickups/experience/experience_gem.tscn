@@ -68,7 +68,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Experience" instance=ExtResource("1_w61le")]
+[node name="Experience" groups=["experience_gems"] instance=ExtResource("1_w61le")]
 script = ExtResource("2_yhebm")
 
 [node name="AnimatedSprite2D" parent="." index="1"]

@@ -25,8 +25,7 @@ func get_player_direction() -> void:
 func go_to_player() -> void:
 	get_player_direction()
 	set_physics_process(true)
-	direction_timer.wait_time = 0.25
-	direction_timer.start()
+	direction_timer.start(0.25)
 
 
 func player_touched() -> void:
