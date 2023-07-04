@@ -63,6 +63,7 @@ outline_color = Color(0, 0, 0, 1)
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_trryi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -99,6 +100,9 @@ one_shot = true
 
 [node name="BanishTimer" type="Timer" parent="VisibleOnScreenNotifier2D"]
 one_shot = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="AITimer" to="." method="_on_ai_timer_timeout"]

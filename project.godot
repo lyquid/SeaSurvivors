@@ -68,10 +68,16 @@ zoom_out={
 [layer_names]
 
 2d_physics/layer_1="world"
+2d_navigation/layer_1="water"
 2d_physics/layer_2="player"
+2d_navigation/layer_2="ground"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="weapons"
 2d_physics/layer_5="pickups"
+
+[navigation]
+
+2d/default_cell_size=16
 
 [physics]
 

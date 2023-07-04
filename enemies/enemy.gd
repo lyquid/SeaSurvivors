@@ -13,6 +13,7 @@ const DEFAULT_DAMAGE_LABEL_TIME := 0.3
 @onready var damage_label := $DamageLabel
 @onready var damage_label_timer := $DamageLabel/DamageLabelTimer
 @onready var death_timer := $DeathTimer
+@onready var navigation_agent := $NavigationAgent2D
 var world: World = null
 var player: Player = null
 var armor: int
@@ -64,11 +65,16 @@ func hit(damage_in: int) -> void:
 		animation_player.play("hit")
 
 
+func make_path_to_player() -> void:
+	navigation_agent.target_position = player.global_position
+
+
 func _on_ai_timer_timeout() -> void:
 	if fleeing:
 		direction = -(player.position - position).normalized()
 	else:
-		direction = (player.position - position).normalized()
+		make_path_to_player()
+		direction = to_local(navigation_agent.get_next_path_position()).normalized()
 
 
 func _on_death_timer_timeout() -> void:
