@@ -1,6 +1,6 @@
 class_name EnemiesManager extends Node2D
 
-const DEFAULT_SPAWN_TIME := 50.0
+const DEFAULT_SPAWN_TIME := 10.0
 const MAX_ENEMIES := 300
 
 @onready var world := get_tree().root.get_node("Main/World")
@@ -116,6 +116,5 @@ func _on_enemy_banished() -> void:
 
 
 func _on_spawn_timer_timeout() -> void:
-	pass
-#	if enemies_count < MAX_ENEMIES:
-#		call_deferred("spawn_random_enemy_pack", 20)
+	if enemies_count < MAX_ENEMIES:
+		call_deferred("spawn_random_enemy_pack", 20)

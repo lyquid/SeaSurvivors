@@ -1,8 +1,9 @@
 class_name World extends Node2D
 
-const MAP_SIZE := Vector2i(200, 200)
 const SEED := "1337"
+var rng := RandomNumberGenerator.new()
 # tilemap
+const MAP_SIZE := Vector2i(200, 200)
 const SOURCE_ID := 0
 const GROUND_LAYER := 1
 const WATER_LAYER := 0
@@ -10,10 +11,8 @@ const TERRAIN_SET_0 := 0
 const SAND_TERRAIN := 0
 const TERRAIN_SET_1 := 1
 const SAND_ON_WATER_TERRAIN := 0
-
-@onready var tile_map := $TileMap
 @export var noise: FastNoiseLite
-var rng := RandomNumberGenerator.new()
+@onready var tile_map := $TileMap
 
 
 func _ready() -> void:

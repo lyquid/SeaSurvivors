@@ -102,7 +102,6 @@ one_shot = true
 one_shot = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="AITimer" to="." method="_on_ai_timer_timeout"]

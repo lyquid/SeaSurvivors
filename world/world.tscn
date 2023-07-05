@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2idtx884hmcq"]
+[gd_scene load_steps=8 format=3 uid="uid://c2idtx884hmcq"]
 
 [ext_resource type="PackedScene" uid="uid://cc0agxkaq6x7u" path="res://player/player.tscn" id="1_jty6p"]
 [ext_resource type="PackedScene" uid="uid://c7a8fodmi8heo" path="res://enemies/enemies_manager.tscn" id="1_w06h6"]
 [ext_resource type="Script" path="res://world/world.gd" id="1_wnns1"]
 [ext_resource type="PackedScene" uid="uid://d2j4agw8r8url" path="res://pickups/pickups_manager.tscn" id="2_5nsve"]
 [ext_resource type="TileSet" uid="uid://b3uhdsap5kp6b" path="res://world/world_tileset.tres" id="4_5o058"]
+[ext_resource type="PackedScene" uid="uid://dfpvk12hallg0" path="res://effects/day and night/day_and_night.tscn" id="6_yw02k"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7lof3"]
 seed = 42
@@ -22,6 +23,8 @@ noise = SubResource("FastNoiseLite_7lof3")
 [node name="PickupsManager" parent="." instance=ExtResource("2_5nsve")]
 
 [node name="EnemiesManager" parent="." instance=ExtResource("1_w06h6")]
+
+[node name="DayAndNight" parent="." instance=ExtResource("6_yw02k")]
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -2

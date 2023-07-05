@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfpvk12hallg0"]
+
+[ext_resource type="Script" path="res://effects/day and night/day_and_night.gd" id="1_d3b2q"]
+[ext_resource type="Gradient" uid="uid://bqpctskw8qje" path="res://effects/day and night/day_and_night_gradient.tres" id="2_er0tv"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4yw0w"]
+resource_name = "Day and night gradient"
+gradient = ExtResource("2_er0tv")
+width = 2048
+
+[node name="DayAndNight" type="CanvasModulate"]
+z_index = 2
+script = ExtResource("1_d3b2q")
+day_and_night_gradient = SubResource("GradientTexture1D_4yw0w")
