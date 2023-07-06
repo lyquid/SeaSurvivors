@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://vtu4gegslgaf"]
+
+[ext_resource type="Theme" uid="uid://cqcvupl5ulik2" path="res://ui/ui_theme.tres" id="1_671oh"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_l6ats"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ceg4h"]
+font_size = 10
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fnh6x"]
+font_size = 10
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_itwf7"]
+font_size = 10
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_671oh")
+script = ExtResource("1_l6ats")
+
+[node name="LevelLabel" type="Label" parent="."]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 13.0
+theme = ExtResource("1_671oh")
+text = "Level"
+label_settings = SubResource("LabelSettings_ceg4h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DayLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 10.0
+grow_horizontal = 0
+theme = ExtResource("1_671oh")
+text = "Day"
+label_settings = SubResource("LabelSettings_fnh6x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HourLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -168.0
+offset_bottom = -155.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_671oh")
+text = "Hour"
+label_settings = SubResource("LabelSettings_itwf7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelBar" type="ProgressBar" parent="."]
+self_modulate = Color(1, 0.207843, 0.0588235, 1)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_671oh")
+step = 1.0
+show_percentage = false

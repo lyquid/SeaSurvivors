@@ -2,13 +2,14 @@ extends CanvasModulate
 
 signal time_tick(day: int, hour: int, minute: int)
 
+const STARTING_DAY := 1
 const MINUTES_PER_DAY := 1440
 const MINUTES_PER_HOUR := 60
 const IN_GAME_TO_REAL_MINUTE_DURATION := (2.0 * PI) / MINUTES_PER_DAY
 
 @export var day_and_night_gradient: GradientTexture1D
 @export var cycle_speed := 10.0
-@export var initial_hour := 10
+@export var initial_hour := 12
 var time := 0.0
 var past_minute := -1
 
@@ -26,8 +27,10 @@ func _process(delta: float) -> void:
 
 func recalculate_time() -> void:
 	var total_minutes := int(time / IN_GAME_TO_REAL_MINUTE_DURATION)
-	var day := int(total_minutes / MINUTES_PER_DAY)
+	@warning_ignore("integer_division")
+	var day := int(total_minutes / MINUTES_PER_DAY) + STARTING_DAY
 	var current_day_minutes := total_minutes % MINUTES_PER_DAY
+	@warning_ignore("integer_division")
 	var hour := int(current_day_minutes / MINUTES_PER_HOUR)
 	var minute := current_day_minutes % MINUTES_PER_HOUR
 	

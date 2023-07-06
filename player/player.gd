@@ -1,5 +1,8 @@
 class_name Player extends CharacterBody2D
 
+signal experience_changed(current_experience: int)
+signal level_updated(current_level: int)
+
 const DEFAULT_SPEED := 100.0
 
 @onready var sprite := $Sprite2D
@@ -32,15 +35,16 @@ func _physics_process(_delta: float) -> void:
 
 func add_experience(how_much: int) -> void:
 	experience += how_much
+	experience_changed.emit(experience)
 	var residue := 0
 	if experience >= experience_until_new_level:
 		residue = experience - experience_until_new_level
 		level += 1
 		new_level()
+		level_updated.emit(level, experience_until_new_level)
 		experience = 0
-		print("LEVEL ", level, ", xp until new level: ", experience_until_new_level)
+#		print("LEVEL ", level, ", xp until new level: ", experience_until_new_level)
 
-#	emit_signal("experience_changed", experience * 100.0 / experience_until_new_level)
 	if residue:
 		add_experience(residue)
 

@@ -1,15 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxbdcm7qksrq3"]
+[gd_scene load_steps=4 format=3 uid="uid://bxbdcm7qksrq3"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_2fd63"]
 [ext_resource type="PackedScene" uid="uid://c2idtx884hmcq" path="res://world/world.tscn" id="2_gxb4i"]
+[ext_resource type="PackedScene" uid="uid://vtu4gegslgaf" path="res://ui/ui.tscn" id="3_65r2j"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_2fd63")
 
-[node name="GUI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="World" parent="." instance=ExtResource("2_gxb4i")]
+
+[node name="UICanvas" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="UICanvas" instance=ExtResource("3_65r2j")]
