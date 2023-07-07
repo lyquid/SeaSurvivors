@@ -7,12 +7,15 @@ signal died_on_a_pack
 const DEFAULT_BANISH_TIME := 10.0
 const DEFAULT_DAMAGE_LABEL_TIME := 0.3
 
+static var lights_on := false
+
 @onready var animated_sprite := $AnimatedSprite2D
 @onready var animation_player := $AnimationPlayer
 @onready var banish_timer := $VisibleOnScreenNotifier2D/BanishTimer
 @onready var damage_label := $DamageLabel
 @onready var damage_label_timer := $DamageLabel/DamageLabelTimer
 @onready var death_timer := $DeathTimer
+@onready var light := $Light
 @onready var navigation_agent := $NavigationAgent2D
 var world: World = null
 var player: Player = null
@@ -27,6 +30,7 @@ var xp_value: int
 
 
 func _ready() -> void:
+	light.set_enabled(lights_on)
 	# this is in case the enemy never enters screen for some reason
 	banish_timer.start(DEFAULT_BANISH_TIME)
 
@@ -67,6 +71,11 @@ func hit(damage_in: int) -> void:
 
 func make_path_to_player() -> void:
 	navigation_agent.target_position = player.global_position
+
+
+func set_light(status: bool) -> void:
+	light.call_deferred("set_enabled", status)
+	lights_on = status
 
 
 func _on_ai_timer_timeout() -> void:
