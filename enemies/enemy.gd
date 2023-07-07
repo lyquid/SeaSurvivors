@@ -49,6 +49,7 @@ func die() -> void:
 	set_process(false)
 	set_physics_process(false)
 	set_collision_layer_value(3, false)
+	light.set_enabled(false)
 	$AITimer.set_paused(true)
 	die_effects()
 	death_timer.start(DEFAULT_DAMAGE_LABEL_TIME)
