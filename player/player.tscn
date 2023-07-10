@@ -1,25 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc0agxkaq6x7u"]
+[gd_scene load_steps=11 format=3 uid="uid://cc0agxkaq6x7u"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_nr06c"]
-[ext_resource type="Texture2D" uid="uid://cauybv3mesdre" path="res://player/graphics/parallel.png" id="1_vbbd8"]
 [ext_resource type="Texture2D" uid="uid://ckpinfin0bu6q" path="res://player/graphics/player.png" id="2_88de6"]
 [ext_resource type="Script" path="res://player/camera.gd" id="4_1ddfk"]
 [ext_resource type="PackedScene" uid="uid://ujpm81stpf3f" path="res://weapons/weapon_manager.tscn" id="4_pjgmj"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_doy6b"]
+cull_mode = 1
+polygon = PackedVector2Array(-31, -9, 23, -9, 23, 6, 17, 17, -27, 17, -31, 6)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hpppn"]
 radius = 11.0
 height = 56.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2cxwi"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_vbbd8")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77qtd"]
 radius = 115.039
@@ -28,11 +20,27 @@ radius = 115.039
 radius = 15.0
 height = 58.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="Gradient" id="Gradient_cc0kh"]
+offsets = PackedFloat32Array(0, 0.282443, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_43ray"]
+gradient = SubResource("Gradient_cc0kh")
+width = 512
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[node name="Player" type="CharacterBody2D" groups=["players"]]
 collision_layer = 2
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_nr06c")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_doy6b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_88de6")
@@ -42,10 +50,6 @@ region_rect = Rect2(0, 0, 32, 16)
 position = Vector2(-3, 3)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_hpppn")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-sprite_frames = SubResource("SpriteFrames_2cxwi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -70,6 +74,14 @@ monitorable = false
 position = Vector2(-4, 4)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_v0arh")
+
+[node name="Light" type="PointLight2D" parent="."]
+enabled = false
+energy = 0.7
+shadow_enabled = true
+shadow_filter_smooth = 1.5
+texture = SubResource("GradientTexture2D_43ray")
+height = 10.0
 
 [connection signal="area_entered" from="PickupAttractor" to="." method="_on_pickup_attractor_area_entered"]
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

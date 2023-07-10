@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://n7l22ack6kmr"]
+[gd_scene load_steps=14 format=3 uid="uid://n7l22ack6kmr"]
 
 [ext_resource type="PackedScene" uid="uid://d065ky5808xyd" path="res://enemies/enemy.tscn" id="1_cccsq"]
 [ext_resource type="Script" path="res://enemies/canoe/canoe.gd" id="2_6ce3c"]
 [ext_resource type="Texture2D" uid="uid://bunspts3xi853" path="res://enemies/canoe/graphics/canoe.png" id="3_nf6fv"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lbje5"]
+cull_mode = 2
+polygon = PackedVector2Array(-7, -1, 7, -1, 6, 3, -6, 3)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_suwk4"]
 atlas = ExtResource("3_nf6fv")
@@ -68,21 +72,24 @@ height = 12.0
 [node name="Canoe" instance=ExtResource("1_cccsq")]
 script = ExtResource("2_6ce3c")
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="LightOccluder2D" parent="." index="0"]
+occluder = SubResource("OccluderPolygon2D_lbje5")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_ab068")
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 1)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_doya7")
 
-[node name="DamageLabel" parent="." index="5"]
+[node name="DamageLabel" parent="." index="6"]
 offset_left = -19.0
 offset_top = -18.0
 offset_right = 21.0
 offset_bottom = 5.0
 text = "10"
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="7"]
 position = Vector2(4.17233e-07, 0.5)
 scale = Vector2(0.8, 0.35)

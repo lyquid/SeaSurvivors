@@ -5,6 +5,7 @@ signal level_updated(current_level: int)
 
 const DEFAULT_SPEED := 100.0
 
+@onready var light := $Light
 @onready var sprite := $Sprite2D
 var speed := DEFAULT_SPEED
 var facing_left := false
@@ -60,6 +61,10 @@ func new_level() -> void:
 		return
 	# level 41 and onward
 	experience_until_new_level += 16
+
+
+func set_light(status: bool) -> void:
+	light.call_deferred("set_enabled", status)
 
 
 func _on_pickup_attractor_area_entered(pickup: Pickup) -> void:

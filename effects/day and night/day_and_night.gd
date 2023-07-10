@@ -45,7 +45,9 @@ func recalculate_time() -> void:
 #		print("day ", day, ", hour ", hour, ", minute ", minute)
 		if not lights_on and hour == dusk_hour:
 			get_tree().call_group("enemies", "set_light", true)
+			get_tree().call_group("players", "set_light", true)
 			lights_on = true
 		elif lights_on and hour == dawn_hour:
 			get_tree().call_group("enemies", "set_light", false)
+			get_tree().call_group("players", "set_light", false)
 			lights_on = false
