@@ -1,4 +1,4 @@
-class_name World extends Node2D
+class_name World extends Node
 
 const SEED := "1337"
 var rng := RandomNumberGenerator.new()

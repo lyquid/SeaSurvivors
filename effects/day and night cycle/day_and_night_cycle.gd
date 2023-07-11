@@ -1,4 +1,4 @@
-extends CanvasModulate
+class_name DayAndNightCycle extends CanvasModulate
 
 signal time_tick(day: int, hour: int, minute: int)
 
@@ -14,8 +14,8 @@ var time := 0.0
 var past_minute := -1
 
 # lights stuff
-@export var dawn_hour := 5
-@export var dusk_hour := 19
+@export var sunrise_hour := 5
+@export var sunset_hour := 19
 var lights_on := false
 
 
@@ -43,11 +43,11 @@ func recalculate_time() -> void:
 		past_minute = minute
 		time_tick.emit(day, hour, minute)
 #		print("day ", day, ", hour ", hour, ", minute ", minute)
-		if not lights_on and hour == dusk_hour:
+		if not lights_on and hour == sunset_hour:
 			get_tree().call_group("enemies", "set_light", true)
 			get_tree().call_group("players", "set_light", true)
 			lights_on = true
-		elif lights_on and hour == dawn_hour:
+		elif lights_on and hour == sunrise_hour:
 			get_tree().call_group("enemies", "set_light", false)
 			get_tree().call_group("players", "set_light", false)
 			lights_on = false

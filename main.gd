@@ -1,7 +1,7 @@
 class_name Main extends Node
 
 @onready var player := get_tree().root.get_node("Main/World/Player")
-@onready var day_and_night := get_tree().root.get_node("Main/World/DayAndNight")
+@onready var day_and_night := get_tree().root.get_node("Main/World/DayAndNightCycle")
 @onready var ui := $UICanvas/UI
 
 
