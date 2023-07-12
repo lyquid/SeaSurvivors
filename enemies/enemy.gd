@@ -5,16 +5,14 @@ signal died
 signal died_on_a_pack
 
 const DEFAULT_BANISH_TIME := 10.0
-const DEFAULT_DAMAGE_LABEL_TIME := 0.3
 
 static var lights_on := false
 
 @onready var animated_sprite := $AnimatedSprite2D
 @onready var animation_player := $AnimationPlayer
 @onready var banish_timer := $VisibleOnScreenNotifier2D/BanishTimer
-@onready var damage_label := $DamageLabel
-@onready var damage_label_timer := $DamageLabel/DamageLabelTimer
 @onready var death_timer := $DeathTimer
+@onready var fct_manager := $FloatingCombatTextManager
 @onready var light := $Light
 @onready var navigation_agent := $NavigationAgent2D
 var world: World = null
@@ -53,7 +51,7 @@ func die() -> void:
 	$LightOccluder2D.set_visible(false)
 	$AITimer.set_paused(true)
 	die_effects()
-	death_timer.start(DEFAULT_DAMAGE_LABEL_TIME)
+	death_timer.start(fct_manager.duration)
 
 
 func die_effects() -> void:
@@ -62,9 +60,8 @@ func die_effects() -> void:
 
 func hit(damage_in: int) -> void:
 	health -= damage_in
-	damage_label.set_text(str(damage_in))
-	damage_label.set_visible(true)
-	damage_label_timer.start(DEFAULT_DAMAGE_LABEL_TIME)
+	var crit := randi_range(0, 1)
+	fct_manager.show_value(damage_in, crit)
 	if health <= 0:
 		die()
 	else:
@@ -92,10 +89,6 @@ func _on_death_timer_timeout() -> void:
 	died.emit(self)
 	died_on_a_pack.emit()
 	queue_free()
-
-
-func _on_damage_label_timer_timeout() -> void:
-	damage_label.set_visible(false)
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:

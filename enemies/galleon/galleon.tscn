@@ -38,12 +38,6 @@ sprite_frames = SubResource("SpriteFrames_71uff")
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_bakt5")
 
-[node name="DamageLabel" parent="." index="6"]
-offset_left = -23.0
-offset_top = -28.0
-offset_right = 25.0
-offset_bottom = -5.0
-
-[node name="VisibleOnScreenNotifier2D" parent="." index="7"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
 position = Vector2(1, -9)
 scale = Vector2(1.4, 1.5)

@@ -83,13 +83,6 @@ position = Vector2(0, 1)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_doya7")
 
-[node name="DamageLabel" parent="." index="6"]
-offset_left = -19.0
-offset_top = -18.0
-offset_right = 21.0
-offset_bottom = 5.0
-text = "10"
-
-[node name="VisibleOnScreenNotifier2D" parent="." index="7"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
 position = Vector2(4.17233e-07, 0.5)
 scale = Vector2(0.8, 0.35)

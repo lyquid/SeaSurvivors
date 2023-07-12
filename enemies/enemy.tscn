@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://d065ky5808xyd"]
+[gd_scene load_steps=8 format=3 uid="uid://d065ky5808xyd"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_trryi"]
-[ext_resource type="Theme" uid="uid://cqcvupl5ulik2" path="res://ui/ui_theme.tres" id="2_kau6j"]
+[ext_resource type="PackedScene" uid="uid://blsfthp7t346b" path="res://effects/floating combat text/floating_combat_text_manager.tscn" id="3_abnj1"]
 
 [sub_resource type="Animation" id="Animation_toj6x"]
 resource_name = "death"
@@ -53,14 +53,6 @@ _data = {
 "hit": SubResource("Animation_1aqb5")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_omal7"]
-light_mode = 1
-
-[sub_resource type="LabelSettings" id="LabelSettings_b7tjb"]
-font_size = 8
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="Gradient" id="Gradient_iqjip"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
@@ -98,31 +90,6 @@ libraries = {
 wait_time = 0.5
 autostart = true
 
-[node name="DamageLabel" type="Label" parent="."]
-visible = false
-light_mask = 0
-z_index = 10
-material = SubResource("CanvasItemMaterial_omal7")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_kau6j")
-label_settings = SubResource("LabelSettings_b7tjb")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DamageLabelTimer" type="Timer" parent="DamageLabel"]
-wait_time = 0.3
-one_shot = true
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="BanishTimer" type="Timer" parent="VisibleOnScreenNotifier2D"]
@@ -137,9 +104,10 @@ energy = 0.7
 texture = SubResource("GradientTexture2D_ycm7s")
 height = 2.0
 
+[node name="FloatingCombatTextManager" parent="." instance=ExtResource("3_abnj1")]
+
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="AITimer" to="." method="_on_ai_timer_timeout"]
-[connection signal="timeout" from="DamageLabel/DamageLabelTimer" to="." method="_on_damage_label_timer_timeout"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="VisibleOnScreenNotifier2D/BanishTimer" to="." method="_on_banish_timer_timeout"]

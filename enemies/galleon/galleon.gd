@@ -13,7 +13,7 @@ var sprite_size: Vector2
 
 
 func _init() -> void:
-	enemy_name = "Boat"
+	enemy_name = "Galleon"
 	xp_value = 8
 	armor = DEFAULT_GALLEON_ARMOR
 	damage = DEFAULT_GALLEON_DAMAGE

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://blsfthp7t346b"]
+
+[ext_resource type="Script" path="res://effects/floating combat text/floating_combat_text_manager.gd" id="1_tlh54"]
+
+[node name="FloatingCombatTextManager" type="Node2D"]
+script = ExtResource("1_tlh54")
