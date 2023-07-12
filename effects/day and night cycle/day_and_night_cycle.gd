@@ -9,7 +9,7 @@ const IN_GAME_TO_REAL_MINUTE_DURATION := (2.0 * PI) / MINUTES_PER_DAY
 
 @export var day_and_night_gradient: GradientTexture1D
 @export var cycle_speed := 10.0
-@export var initial_hour := 17
+@export var initial_hour := 8
 var time := 0.0
 var past_minute := -1
 

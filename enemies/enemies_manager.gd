@@ -1,6 +1,7 @@
 class_name EnemiesManager extends Node2D
 
 const DEFAULT_SPAWN_TIME := 10.0
+const DEFAULT_GALLEON_SPAWN_TIME := 5.0
 const MAX_ENEMIES := 300
 
 @onready var world := get_tree().root.get_node("Main/World")
@@ -9,26 +10,30 @@ const MAX_ENEMIES := 300
 @onready var enemy_spawner := $EnemySpawner
 @onready var enemy_spawn_location := $EnemySpawner/EnemySpawnLocation
 @onready var spawn_timer := $SpawnTimer
+@onready var galleon_spawn_timer := $GalleonSpawnTimer
 var rng := RandomNumberGenerator.new()
 var enemy_pack_scene := preload("res://enemies/enemy_pack.tscn")
 # Enemies
 var enemies_count := 0
-enum Enemies { BOAT, CANOE, count }
+enum Enemies { BOAT, CANOE, GALLEON, count }
 var boat_scene := preload("res://enemies/boat/boat.tscn")
 var canoe_scene := preload("res://enemies/canoe/canoe.tscn")
+var galleon_scene := preload("res://enemies/galleon/galleon.tscn")
 
 
 func _ready() -> void:
 	rng.randomize()
 	spawn_random_enemy_pack(20)
 	spawn_timer.start(DEFAULT_SPAWN_TIME)
+	galleon_spawn_timer.start(DEFAULT_GALLEON_SPAWN_TIME)
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 		and event.get_button_index() == MOUSE_BUTTON_LEFT \
 		and event.is_pressed():
-			spawn_random_enemy(make_canvas_position_local(event.position))
+#			spawn_random_enemy(make_canvas_position_local(event.position))
+			spawn_enemy(Enemies.GALLEON, make_canvas_position_local(event.position))
 
 
 func instance_enemy(enemy_type: int) -> Enemy:
@@ -39,6 +44,8 @@ func instance_enemy(enemy_type: int) -> Enemy:
 			enemy = boat_scene.instantiate() as Enemy
 		Enemies.CANOE:
 			enemy = canoe_scene.instantiate() as Enemy
+		Enemies.GALLEON:
+			enemy = galleon_scene.instantiate() as Enemy
 		_:
 			print("Wrong enemy")
 	assert(enemy)
@@ -103,7 +110,10 @@ func spawn_random_enemy(where := Vector2.INF) -> void:
 
 
 func spawn_random_enemy_pack(pack_size: int) -> void:
-	spawn_enemy_pack(randi_range(0, Enemies.count - 1), pack_size)
+	var result := randi_range(0, Enemies.count - 1)
+	while result == Enemies.GALLEON:
+		result = randi_range(0, Enemies.count - 1)
+	spawn_enemy_pack(result, pack_size)
 
 
 func _on_enemy_death(enemy: Enemy) -> void:
@@ -118,3 +128,7 @@ func _on_enemy_banished() -> void:
 func _on_spawn_timer_timeout() -> void:
 	if enemies_count < MAX_ENEMIES:
 		call_deferred("spawn_random_enemy_pack", 20)
+
+
+func _on_galleon_spawn_timer_timeout():
+	spawn_enemy(Enemies.GALLEON)

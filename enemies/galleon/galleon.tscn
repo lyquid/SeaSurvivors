@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://d33jw14ckodm7"]
+
+[ext_resource type="PackedScene" uid="uid://d065ky5808xyd" path="res://enemies/enemy.tscn" id="1_u5034"]
+[ext_resource type="Script" path="res://enemies/galleon/galleon.gd" id="2_wmsha"]
+[ext_resource type="Texture2D" uid="uid://cgxv7t5tjl1je" path="res://enemies/galleon/graphics/galleon.png" id="3_geapj"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mmrlv"]
+cull_mode = 2
+polygon = PackedVector2Array(10, -5, 10, 4, -11, 4, -11, -5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71uff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_geapj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bakt5"]
+radius = 6.0
+height = 26.0
+
+[node name="Galleon" instance=ExtResource("1_u5034")]
+script = ExtResource("2_wmsha")
+
+[node name="LightOccluder2D" parent="." index="0"]
+position = Vector2(1, 0)
+occluder = SubResource("OccluderPolygon2D_mmrlv")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(2, -10)
+sprite_frames = SubResource("SpriteFrames_71uff")
+
+[node name="CollisionShape2D" parent="." index="2"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_bakt5")
+
+[node name="DamageLabel" parent="." index="6"]
+offset_left = -23.0
+offset_top = -28.0
+offset_right = 25.0
+offset_bottom = -5.0
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="7"]
+position = Vector2(1, -9)
+scale = Vector2(1.4, 1.5)

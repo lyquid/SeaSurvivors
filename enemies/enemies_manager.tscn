@@ -13,6 +13,8 @@ script = ExtResource("1_b8fbd")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
+[node name="GalleonSpawnTimer" type="Timer" parent="."]
+
 [node name="EnemySpawner" type="Path2D" parent="."]
 position = Vector2(-435, -216)
 curve = SubResource("Curve2D_o1k6e")
@@ -22,3 +24,4 @@ position = Vector2(-41, -94)
 rotation = -0.00104384
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="GalleonSpawnTimer" to="." method="_on_galleon_spawn_timer_timeout"]
